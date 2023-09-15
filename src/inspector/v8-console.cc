@@ -101,14 +101,15 @@ class ConsoleHelper {
 
   void reportCall(ConsoleAPIType type,
                   const std::vector<v8::Local<v8::Value>>& arguments) {
-    if (!m_groupId) return;
-    std::unique_ptr<V8ConsoleMessage> message =
-        V8ConsoleMessage::createForConsoleAPI(
-            m_context, m_contextId, m_groupId, m_inspector,
-            m_inspector->client()->currentTimeMS(), type, arguments,
-            consoleContextToString(m_isolate, m_consoleContext),
-            m_inspector->debugger()->captureStackTrace(false));
-    consoleMessageStorage()->addMessage(std::move(message));
+    // if (!m_groupId) return;
+    // std::unique_ptr<V8ConsoleMessage> message =
+    //     V8ConsoleMessage::createForConsoleAPI(
+    //         m_context, m_contextId, m_groupId, m_inspector,
+    //         m_inspector->client()->currentTimeMS(), type, arguments,
+    //         consoleContextToString(m_isolate, m_consoleContext),
+    //         m_inspector->debugger()->captureStackTrace(false));
+    // consoleMessageStorage()->addMessage(std::move(message));
+    (void)m_consoleContext;
   }
 
   void reportDeprecatedCall(const char* id, const String16& message) {
@@ -190,37 +191,37 @@ V8Console::V8Console(V8InspectorImpl* inspector) : m_inspector(inspector) {}
 
 void V8Console::Debug(const v8::debug::ConsoleCallArguments& info,
                       const v8::debug::ConsoleContext& consoleContext) {
-  TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Debug");
-  ConsoleHelper(info, consoleContext, m_inspector)
-      .reportCall(ConsoleAPIType::kDebug);
+  // TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Debug");
+  // ConsoleHelper(info, consoleContext, m_inspector)
+  //     .reportCall(ConsoleAPIType::kDebug);
 }
 
 void V8Console::Error(const v8::debug::ConsoleCallArguments& info,
                       const v8::debug::ConsoleContext& consoleContext) {
-  TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Error");
-  ConsoleHelper(info, consoleContext, m_inspector)
-      .reportCall(ConsoleAPIType::kError);
+  // TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Error");
+  // ConsoleHelper(info, consoleContext, m_inspector)
+  //     .reportCall(ConsoleAPIType::kError);
 }
 
 void V8Console::Info(const v8::debug::ConsoleCallArguments& info,
                      const v8::debug::ConsoleContext& consoleContext) {
-  TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Info");
-  ConsoleHelper(info, consoleContext, m_inspector)
-      .reportCall(ConsoleAPIType::kInfo);
+  // TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Info");
+  // ConsoleHelper(info, consoleContext, m_inspector)
+  //     .reportCall(ConsoleAPIType::kInfo);
 }
 
 void V8Console::Log(const v8::debug::ConsoleCallArguments& info,
                     const v8::debug::ConsoleContext& consoleContext) {
-  TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Log");
-  ConsoleHelper(info, consoleContext, m_inspector)
-      .reportCall(ConsoleAPIType::kLog);
+  // TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Log");
+  // ConsoleHelper(info, consoleContext, m_inspector)
+  //     .reportCall(ConsoleAPIType::kLog);
 }
 
 void V8Console::Warn(const v8::debug::ConsoleCallArguments& info,
                      const v8::debug::ConsoleContext& consoleContext) {
-  TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Warn");
-  ConsoleHelper(info, consoleContext, m_inspector)
-      .reportCall(ConsoleAPIType::kWarning);
+  // TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"), "V8Console::Warn");
+  // ConsoleHelper(info, consoleContext, m_inspector)
+  //     .reportCall(ConsoleAPIType::kWarning);
 }
 
 void V8Console::Dir(const v8::debug::ConsoleCallArguments& info,

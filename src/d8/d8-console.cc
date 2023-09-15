@@ -11,25 +11,25 @@ namespace v8 {
 namespace {
 void WriteToFile(const char* prefix, FILE* file, Isolate* isolate,
                  const debug::ConsoleCallArguments& args) {
-  if (prefix) fprintf(file, "%s: ", prefix);
-  for (int i = 0; i < args.Length(); i++) {
-    HandleScope handle_scope(isolate);
-    if (i > 0) fprintf(file, " ");
+  // if (prefix) fprintf(file, "%s: ", prefix);
+  // for (int i = 0; i < args.Length(); i++) {
+  //   HandleScope handle_scope(isolate);
+  //   if (i > 0) fprintf(file, " ");
 
-    Local<Value> arg = args[i];
-    Local<String> str_obj;
+  //   Local<Value> arg = args[i];
+  //   Local<String> str_obj;
 
-    if (arg->IsSymbol()) arg = Local<Symbol>::Cast(arg)->Description(isolate);
-    if (!arg->ToString(isolate->GetCurrentContext()).ToLocal(&str_obj)) return;
+  //   if (arg->IsSymbol()) arg = Local<Symbol>::Cast(arg)->Description(isolate);
+  //   if (!arg->ToString(isolate->GetCurrentContext()).ToLocal(&str_obj)) return;
 
-    v8::String::Utf8Value str(isolate, str_obj);
-    int n = static_cast<int>(fwrite(*str, sizeof(**str), str.length(), file));
-    if (n != str.length()) {
-      printf("Error in fwrite\n");
-      base::OS::ExitProcess(1);
-    }
-  }
-  fprintf(file, "\n");
+  //   v8::String::Utf8Value str(isolate, str_obj);
+  //   int n = static_cast<int>(fwrite(*str, sizeof(**str), str.length(), file));
+  //   if (n != str.length()) {
+  //     printf("Error in fwrite\n");
+  //     base::OS::ExitProcess(1);
+  //   }
+  // }
+  // fprintf(file, "\n");
 }
 }  // anonymous namespace
 

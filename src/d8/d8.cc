@@ -3667,7 +3667,7 @@ void Shell::Initialize(Isolate* isolate, D8Console* console,
   }
 #endif  // V8_FUZZILLI
 
-  debug::SetConsoleDelegate(isolate, console);
+  debug::SetConsoleDelegate(isolate, nullptr);
 }
 
 Local<String> Shell::WasmLoadSourceMapCallback(Isolate* isolate,
